@@ -70,7 +70,7 @@ export default function ProfessionSearch({ onProfessionSelect }: ProfessionSearc
       charIndex.current = 0
       isDeleting.current = false
     }
-  }, [placeholders])
+  }, [])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()

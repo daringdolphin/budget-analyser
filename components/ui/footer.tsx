@@ -14,7 +14,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            {/* <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="#" className="hover:text-white transition-colors">
@@ -31,7 +31,7 @@ export default function Footer() {
                   Contact
                 </Link>
               </li>
-            </ul>
+            </ul> */}
           </div>
 
           <div>
@@ -48,7 +48,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="https://www.mof.gov.sg/singaporebudget/budget-2024/budget-statement"
+                  href="https://www.mof.gov.sg/docs/librariesprovider3/budget2025/download/pdf/fy2025_budget_statement.pdf"
                   target="_blank"
                   className="hover:text-white transition-colors"
                 >

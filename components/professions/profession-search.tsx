@@ -83,17 +83,20 @@ export default function ProfessionSearch({ onProfessionSelect }: ProfessionSearc
   return (
     <div className="w-full max-w-2xl mx-auto">
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
-          <Input
-            type="text"
-            placeholder={`${staticPrefix}${placeholder}`}
-            className="pl-10 h-12 text-lg"
-            value={profession}
-            onChange={(e) => setProfession(e.target.value)}
-          />
+        <div className="flex-1">
+          <p className="text-xs text-slate-400 mb-1.5">Enter your role and industry</p>
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
+            <Input
+              type="text"
+              placeholder={`${staticPrefix}${placeholder}`}
+              className="pl-10 h-12 text-lg"
+              value={profession}
+              onChange={(e) => setProfession(e.target.value)}
+            />
+          </div>
         </div>
-        <Button type="submit" className="h-12 px-6 text-base font-medium" disabled={!profession.trim()}>
+        <Button type="submit" className="h-12 px-6 text-base font-medium mt-1 sm:mt-6" disabled={!profession.trim()}>
           What&apos;s in it for me?
         </Button>
       </form>

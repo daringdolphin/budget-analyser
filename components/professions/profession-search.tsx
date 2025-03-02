@@ -70,7 +70,7 @@ export default function ProfessionSearch({ onProfessionSelect }: ProfessionSearc
       charIndex.current = 0
       isDeleting.current = false
     }
-  }, [])
+  }, [placeholders])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -94,7 +94,7 @@ export default function ProfessionSearch({ onProfessionSelect }: ProfessionSearc
           />
         </div>
         <Button type="submit" className="h-12 px-6 text-base font-medium" disabled={!profession.trim()}>
-          What's in it for me?
+          What&apos;s in it for me?
         </Button>
       </form>
     </div>

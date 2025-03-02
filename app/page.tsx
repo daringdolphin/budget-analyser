@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button"
 import { type Recommendation } from "@/lib/recommendations"
 import RecommendationsModal from "@/components/recommendations/recommendations-modal";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { AlertCircle, Loader2, Lightbulb } from "lucide-react"
+import { AlertCircle, Loader2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import PastRecommendations from "@/components/recommendations/past-recommendations"
 
@@ -179,11 +179,6 @@ export default function Home() {
       fetchRecommendations(`I am a ${lastFetchedProfession.toLowerCase()}`, lastFetchedProfession);
     }
   };
-
-  // Get the currently selected profession for display in the header
-  const currentProfession = selectedPastIndex !== null && pastRecommendations.length > 0
-    ? pastRecommendations[selectedPastIndex].profession
-    : null;
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-slate-50 to-slate-100">

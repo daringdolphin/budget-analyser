@@ -1,6 +1,5 @@
 "use client"
 
-import { useState } from "react"
 import { Briefcase, GraduationCap, Code, LineChart, ShoppingBag, BookOpen, Calculator, Store } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 

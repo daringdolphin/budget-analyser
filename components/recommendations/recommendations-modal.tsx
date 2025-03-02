@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetClose } from "@/components/ui/sheet"
-import RecommendationsPage from "@/components/recommendations/recommendations-page"
 import { RecommendationCard } from "@/components/recommendations/recommendation-card"
 
 interface RecommendationsModalProps {
@@ -39,17 +38,6 @@ function ModalHeader({ title }: ModalHeaderProps) {
         </SheetClose>
       </div>
     </SheetHeader>
-  )
-}
-
-function ModalFooter({ total, shown, onViewAll }: { total: number; shown: number; onViewAll: () => void }) {
-  return (
-    <div className="mt-6 text-center">
-      <p className="text-sm text-slate-500 mb-4">
-        Showing {shown} of {total} recommendations
-      </p>
-      <Button onClick={onViewAll}>View All Recommendations</Button>
-    </div>
   )
 }
 

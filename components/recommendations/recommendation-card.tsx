@@ -16,7 +16,7 @@ interface RecommendationCardProps {
   compact?: boolean
 }
 
-export function RecommendationCard({ recommendation, compact = false }: RecommendationCardProps) {
+export function RecommendationCard({ recommendation }: RecommendationCardProps) {
   return (
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem value="item-1" className="border border-slate-200 rounded-lg bg-white shadow-sm hover:shadow transition-shadow duration-200">

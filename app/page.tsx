@@ -203,7 +203,7 @@ export default function Home() {
             <div className="mt-8 text-center">
               <LoadingSpinner />
               <p className="mt-2 text-sm text-muted-foreground">
-                Generating recommendations...
+                Tailoring a budget just for you...
               </p>
             </div>
           )}

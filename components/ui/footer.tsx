@@ -18,44 +18,47 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="#" className="hover:text-white transition-colors">
-                  Official Budget Portal
+                  Home
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:text-white transition-colors">
-                  Ministry of Finance
+                  About
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:text-white transition-colors">
-                  Budget Highlights
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-white transition-colors">
-                  Tax Calculator
+                  Contact
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact</h3>
-            <p className="text-sm text-slate-400 mb-2">For inquiries about the budget, please contact:</p>
-            <p className="text-sm">
-              <a href="mailto:budget@gov.sg" className="hover:text-white transition-colors">
-                budget@gov.sg
-              </a>
-            </p>
+            <h3 className="text-lg font-semibold mb-4">Resources</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link
+                  href="https://www.mof.gov.sg/singaporebudget"
+                  target="_blank"
+                  className="hover:text-white transition-colors"
+                >
+                  Official Budget Website
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://www.mof.gov.sg/singaporebudget/budget-2024/budget-statement"
+                  target="_blank"
+                  className="hover:text-white transition-colors"
+                >
+                  Budget Statement
+                </Link>
+              </li>
+            </ul>
           </div>
-        </div>
-
-        <div className="mt-8 pt-6 border-t border-slate-700 text-sm text-slate-400 flex flex-col md:flex-row justify-between items-center">
-          <p>© {new Date().getFullYear()} Singapore Budget Navigator. All rights reserved.</p>
-          <p className="mt-2 md:mt-0">Last updated: February 28, 2025</p>
         </div>
       </div>
     </footer>
   )
-}
-
+} 

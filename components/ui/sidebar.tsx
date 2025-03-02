@@ -23,7 +23,7 @@ const SidebarProvider = ({ children, defaultIsOpen = true, className, ...props }
 
   return (
     <SidebarContext.Provider value={{ isOpen, setIsOpen }}>
-      <div className={cn("grid grid-cols-1 md:grid-cols-[auto_1fr]", className)} {...props}>
+      <div className={cn("relative", className)} {...props}>
         {children}
       </div>
     </SidebarContext.Provider>
@@ -46,13 +46,13 @@ const Sidebar = ({ className, variant = "default", ...props }: SidebarProps) => 
   const { isOpen } = useSidebar()
 
   return (
-    <div
+    <aside
       data-state={isOpen ? "open" : "closed"}
       className={cn(
-        "relative hidden h-screen flex-col gap-4 overflow-hidden border-r bg-sidebar text-sidebar-foreground md:flex",
-        isOpen ? "w-[var(--sidebar-width)]" : "w-[var(--sidebar-collapsed-width)]",
-        variant === "floating" && "border-none shadow-none",
-        className,
+        "h-full transition-[width] duration-300",
+        variant === "default" && "w-[270px] data-[state=closed]:w-[70px]",
+        variant === "floating" && "absolute left-0 top-0 z-50 w-[270px] data-[state=closed]:w-0",
+        className
       )}
       {...props}
     />
@@ -66,18 +66,20 @@ const SidebarTrigger = ({ className, ...props }: React.ButtonHTMLAttributes<HTML
     <Button
       variant="ghost"
       size="icon"
-      className={cn("h-9 w-9", className)}
+      className={cn("h-6 w-6", className)}
       onClick={() => setIsOpen(!isOpen)}
       {...props}
     >
-      <ChevronRight className={cn("h-4 w-4 transition-transform", isOpen ? "rotate-180" : "rotate-0")} />
-      <span className="sr-only">Toggle Sidebar</span>
+      <ChevronRight
+        className={cn("h-4 w-4 transition-transform", isOpen && "rotate-180")}
+        aria-hidden="true"
+      />
     </Button>
   )
 }
 
 const SidebarHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
-  return <div className={cn("flex h-14 items-center border-b px-4", className)} {...props} />
+  return <div className={cn("px-2 py-2", className)} {...props} />
 }
 
 const SidebarContent = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
@@ -85,11 +87,11 @@ const SidebarContent = ({ className, ...props }: React.HTMLAttributes<HTMLDivEle
 }
 
 const SidebarFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
-  return <div className={cn("flex items-center border-t p-4", className)} {...props} />
+  return <div className={cn("px-2 py-2", className)} {...props} />
 }
 
 const SidebarInset = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
-  return <div className={cn("flex h-screen flex-col overflow-hidden", className)} {...props} />
+  return <div className={cn("-mx-2", className)} {...props} />
 }
 
 const SidebarGroup = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
@@ -97,11 +99,11 @@ const SidebarGroup = ({ className, ...props }: React.HTMLAttributes<HTMLDivEleme
 }
 
 const SidebarMenu = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
-  return <div className={cn("flex flex-col gap-1", className)} {...props} />
+  return <div className={cn("px-2 py-1", className)} {...props} />
 }
 
 const SidebarMenuItem = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
-  return <div className={cn("", className)} {...props} />
+  return <div className={cn("px-2", className)} {...props} />
 }
 
 interface SidebarMenuButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -112,30 +114,34 @@ interface SidebarMenuButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEl
 
 const SidebarMenuButton = React.forwardRef<HTMLButtonElement, SidebarMenuButtonProps>(
   ({ className, isActive, size = "default", asChild = false, ...props }, ref) => {
-    const Comp = asChild ? React.Fragment : "button"
+    const { isOpen } = useSidebar()
+
     return (
-      <Comp
+      <Button
         ref={ref}
+        variant="ghost"
         className={cn(
-          "flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
-          size === "sm" && "py-1",
-          size === "lg" && "py-3",
-          isActive && "bg-accent/50",
-          className,
+          "w-full justify-start gap-2",
+          size === "default" && "h-10",
+          size === "sm" && "h-8",
+          size === "lg" && "h-12",
+          !isOpen && "justify-center",
+          isActive && "bg-accent",
+          className
         )}
         {...props}
       />
     )
-  },
+  }
 )
 SidebarMenuButton.displayName = "SidebarMenuButton"
 
 const SidebarMenuSub = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
-  return <div className={cn("ml-4 flex flex-col gap-1 border-l pl-4", className)} {...props} />
+  return <div className={cn("ml-4", className)} {...props} />
 }
 
 const SidebarMenuSubItem = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
-  return <div className={cn("", className)} {...props} />
+  return <div className={cn("px-2", className)} {...props} />
 }
 
 interface SidebarMenuSubButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -145,25 +151,28 @@ interface SidebarMenuSubButtonProps extends React.ButtonHTMLAttributes<HTMLButto
 
 const SidebarMenuSubButton = React.forwardRef<HTMLButtonElement, SidebarMenuSubButtonProps>(
   ({ className, isActive, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? React.Fragment : "button"
+    const { isOpen } = useSidebar()
+
     return (
-      <Comp
+      <Button
         ref={ref}
+        variant="ghost"
+        size="sm"
         className={cn(
-          "flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
-          isActive && "bg-accent/50",
-          className,
+          "w-full justify-start gap-2",
+          !isOpen && "justify-center",
+          isActive && "bg-accent",
+          className
         )}
         {...props}
       />
     )
-  },
+  }
 )
 SidebarMenuSubButton.displayName = "SidebarMenuSubButton"
 
 export {
   Sidebar,
-  SidebarTrigger,
   SidebarHeader,
   SidebarContent,
   SidebarFooter,
@@ -176,6 +185,6 @@ export {
   SidebarMenuSubItem,
   SidebarMenuSubButton,
   SidebarProvider,
+  SidebarTrigger,
   useSidebar,
-}
-
+} 

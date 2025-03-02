@@ -8,7 +8,7 @@ const professions = [
   { id: 1, name: "Teacher", icon: BookOpen },
   { id: 2, name: "Software Engineer", icon: Code },
   { id: 3, name: "Sales Executive", icon: LineChart },
-  { id: 4, name: "Business Development Manager", icon: Briefcase },
+  { id: 4, name: "Biz Dev Manager", icon: Briefcase },
   { id: 5, name: "Hawker", icon: Store },
   { id: 6, name: "Student", icon: GraduationCap },
   { id: 7, name: "Accountant", icon: Calculator },
@@ -20,10 +20,6 @@ interface ProfessionGridProps {
 }
 
 export default function ProfessionGrid({ onProfessionSelect }: ProfessionGridProps) {
-  const handleSelect = (profession: string) => {
-    onProfessionSelect(profession)
-  }
-
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
       {professions.map((profession) => {
@@ -31,10 +27,10 @@ export default function ProfessionGrid({ onProfessionSelect }: ProfessionGridPro
         return (
           <Card
             key={profession.id}
-            className="cursor-pointer transition-all hover:shadow-md hover:-translate-y-1"
-            onClick={() => handleSelect(profession.name)}
+            className="cursor-pointer transition-all hover:shadow-md hover:-translate-y-1 w-full aspect-square"
+            onClick={() => onProfessionSelect(profession.name)}
           >
-            <CardContent className="flex flex-col items-center justify-center p-6">
+            <CardContent className="flex flex-col items-center justify-center p-6 h-full">
               <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center mb-3">
                 <Icon className="h-8 w-8 text-slate-600" />
               </div>

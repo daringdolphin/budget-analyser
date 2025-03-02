@@ -23,10 +23,8 @@ export default function Navigation() {
   }
 
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "Full Budget Overview", href: "#" },
-    { name: "FAQs", href: "#" },
-    { name: "About", href: "#" },
+    { name: "Full Budget Overview", href: "https://www.mof.gov.sg/docs/librariesprovider3/budget2025/download/pdf/fy2025_budget_statement.pdf", target: "_blank" },
+    { name: "Budget Calculator", href: "https://supportgowhere.life.gov.sg/budget/support-calculator", target: "_blank" },
   ]
 
   return (
@@ -36,7 +34,7 @@ export default function Navigation() {
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center">
               <Link href="/" className="text-lg font-semibold">
-                SG Budget Navigator
+                FY2025 Budget Navigator
               </Link>
             </div>
 
@@ -45,6 +43,7 @@ export default function Navigation() {
                 <Link
                   key={link.name}
                   href={link.href}
+                  target={link.target}
                   className="text-sm font-medium text-slate-700 hover:text-slate-900"
                 >
                   {link.name}
@@ -63,7 +62,12 @@ export default function Navigation() {
                 <SheetContent side="right">
                   <div className="flex flex-col space-y-4 mt-8">
                     {navLinks.map((link) => (
-                      <Link key={link.name} href={link.href} className="text-base font-medium py-2">
+                      <Link 
+                        key={link.name} 
+                        href={link.href} 
+                        target={link.target}
+                        className="text-base font-medium py-2"
+                      >
                         {link.name}
                       </Link>
                     ))}
@@ -88,5 +92,4 @@ export default function Navigation() {
       )}
     </>
   )
-}
-
+} 

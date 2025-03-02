@@ -1,5 +1,3 @@
-import { Flag } from "lucide-react"
-
 export default function Header() {
   return (
     <header className="text-center pt-8 pb-4">

@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowLeft, ExternalLink } from "lucide-react"
+import { ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { RecommendationCard } from "@/components/recommendations/recommendation-card"
 

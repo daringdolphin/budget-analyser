@@ -8,7 +8,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Singapore FY25 Budget Navigator</h3>
             <p className="text-sm text-slate-400">
-              This tool provides guidance on Singapore's FY25 Budget initiatives based on your profession. All
+              This tool provides guidance on Singapore&apos;s FY25 Budget initiatives based on your profession. All
               information is for reference only.
             </p>
           </div>

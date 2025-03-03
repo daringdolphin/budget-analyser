@@ -149,6 +149,16 @@ export default function RecommendationsModal({
             Showing {(currentPage - 1) * itemsPerPage + 1}-{Math.min(currentPage * itemsPerPage, recommendations.length)} of {recommendations.length} recommendations
           </p>
         </div>
+
+        <div className="mt-6 flex justify-start">
+          <Button 
+            variant="secondary" 
+            onClick={onClose}
+            className="px-6"
+          >
+            Back to Homepage
+          </Button>
+        </div>
       </SheetContent>
     </Sheet>
   )
